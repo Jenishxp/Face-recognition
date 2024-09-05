@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            width: 380px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 26px;
+            font-weight: 700;
+        }
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-size: 14px;
+            text-align: left;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+        .form-group input:focus {
+            border-color: #6e8efb;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .form-group button:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        .error, .success {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .error {
+            color: #e74c3c;
+        }
+        .success {
+            color: #2ecc71;
+        }
+        .background-effect {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('https://source.unsplash.com/random/1600x1200') no-repeat center center/cover;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: rotate 20s infinite linear;
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <div id="message" class="error"></div>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="background-effect"></div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Define valid users
+            const validUsers = [
+                { username: 'jiya', password: 'abc@123' },
+                { username: 'shreya', password: '12345' },
+                { username: 'nishil', password: '5678' },
+                { username: 'jenish', password: '987' }
+            ];
+
+            // Check if the entered credentials match any of the valid users
+            const isValidUser = validUsers.some(user => user.username === username && user.password === password);
+
+            if (isValidUser) {
+                document.getElementById('message').className = 'success';
+                document.getElementById('message').innerText = 'Login successful, redirecting...';
+                setTimeout(function() {
+                    window.location.href = "{{ url_for('dashboard') }}"; // Redirect to dashboard page
+                }, 1000); // 1-second delay for the success message
+            } else {
+                document.getElementById('message').className = 'error';
+                document.getElementById('message').innerText = 'Invalid username or password';
+            }
+        });
+    </script>
+</body>
+</html>

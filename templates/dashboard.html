@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            color: #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-emojis {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 4rem;
+            opacity: 0.2;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .background-emojis > div {
+            margin: 1rem;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .welcome-header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .subject-faculty-info {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px 30px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .subject-faculty-info p {
+            color: #000;
+            font-size: 1.1rem;
+            margin: 5px 0;
+        }
+
+        .attendance-window {
+            width: 90%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .attendance-window h2 {
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .attendance-window p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .class-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .class-table th, .class-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .class-table th {
+            background-color: #2193b0;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .class-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .class-table tr:hover {
+            background-color: #d1ecf1;
+        }
+
+        .select-button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .select-button:hover {
+            background-color: #357ab8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Emojis -->
+    <div class="background-emojis">
+        <div>☁️🌞☁️</div>
+        <div>👨‍🎓👩‍🎓</div>
+        <div>📚📚📚</div>
+        <div>👨‍🏫👩‍🏫</div>
+        <div>👨‍🎓👩‍🎓</div>
+        <div>📚📚📚</div>
+        <div>👨‍🏫👩‍🏫</div>
+        <div>👨‍🎓👩‍🎓</div>
+        <div>📚📚📚</div>
+        <div>👨‍🏫👩‍🏫</div>
+    </div>
+    <div class="container">
+        <header class="welcome-header">
+            <h1>Welcome to the Dashboard!</h1>
+            <div class="subject-faculty-info">
+                <p>Subject: <span id="subject-name">Subject Name</span></p>
+                <p>Faculty: <span id="faculty-name">Faculty Name</span></p>
+            </div>
+        </header>
+        <div class="attendance-window">
+            <h2>Attendance System</h2>
+            <p>Please select the class and mark your attendance or you can see the report of attendance.</p>
+            <table class="class-table">
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Class 1</td>
+                        <td><button class="select-button" onclick="window.location.href='{{ url_for('attendance', class_name='Class 1') }}'">Select Class 1</button></td>
+                    </tr>
+                    <tr>
+                        <td>Class 2</td>
+                        <td><button class="select-button" onclick="window.location.href='{{ url_for('attendance', class_name='Class 2') }}'">Select Class 2</button></td>
+                    </tr>
+                    <tr>
+                        <td>Class 3</td>
+                        <td><button class="select-button" onclick="window.location.href='{{ url_for('attendance', class_name='Class 3') }}'">Select Class 3</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
