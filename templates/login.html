@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- <link rel="stylesheet" href="./loginstyle.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='loginstyle.css') }}">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <div id="message" class="error"></div>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="email" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="submit">Login</button>
+            </div>
+            <a href="signup.html"class="signup">Don't have an account? Signup</a>
+        </form>
+    </div>
+
+    <div class="background-effect"></div>
+
+    <!-- <script type="module" src="./script2.js"></script> -->
+    <script type="module" src="{{ url_for('static', filename='script2.js') }}"></script>
+
+</body>
+</html>

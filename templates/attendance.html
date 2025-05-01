@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <style>
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 40px 20px;
+    color: #f0f0f0;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+.attendance-info {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 25px 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+    width: 90%;
+    max-width: 600px;
+    transition: all 0.3s ease;
+}
+
+.attendance-info:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(31,38,135,0.5);
+}
+
+.attendance-info p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+.video-feed-container {
+    margin-top: 40px;
+}
+
+.video-feed-container h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #fff;
+}
+
+img {
+    width: 720px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    border: 4px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.back-button {
+    margin-top: 30px;
+    padding: 12px 24px;
+    background: #ff7e5f;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255,126,95,0.4);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255,126,95,0.6);
+}
+
+@media (max-width: 768px) {
+    .attendance-info, img {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .video-feed-container h2 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+  </style>
+</head>
+<body>
+  <h1>Attendance for {{ class_name }}</h1>
+
+  <div class="attendance-info">
+    <p>Faculty: {{ faculty_name }}</p>
+    <p>Date: {{ current_date }}</p>
+    <p>Mark your attendance using the live feed below.</p>
+  </div>
+
+  <div class="video-feed-container">
+    <h2>Live Video Feed</h2>
+
+    <img src="{{ url_for('video') }}" width="720" height="560">
+  </div>
+  <a href="./dashboard" class="back-button">Back</a>
+  
+</body>
+</html>
